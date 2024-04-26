@@ -5,6 +5,18 @@
     <title>타임리프 예시</title>
 </head>
 <body>
-    <h1 th:text="'안녕하세요, ' + ${name} + '님!'"></h1>
+    <h1 th:text="'이름' + ${name} + '나이 : ' + ${age} "></h1>
+    <form action="/">
+        <label>
+            이름 :
+            <input type="text" name="name"/>
+        </label>
+        <label>
+            나이 :
+            <input type="text" name="age"/>
+        </label>
+        <button type="submit" formmethod="get">GET</button>
+        <button type="submit" formmethod="post">POST</button>
+    </form>
 </body>
 </html>
