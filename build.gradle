@@ -1,6 +1,6 @@
 plugins {
     id 'org.springframework.boot' version '3.2.5' // 스프링 부트 플러그인
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE' // 스프링 부트 의존성 관리 플러그인
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE' // 스프링 부트 의존성 관리 플러그인
     id 'java' // 자바 플러그인
 }
 
@@ -15,9 +15,15 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web' // 스프링 부트 웹 스타터 의존성
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // 스프링 부트 JPA 스타터 의존성
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // 스프링 부트 타임리프 스타터 의존성
-    implementation 'com.oracle.database.jdbc:ojdbc8:19.8.0.0' // 오라클 JDBC 드라이버 의존성    
-    testImplementation 'org.springframework.boot:spring-boot-starter-test' // 스프링 부트 테스트 스타터 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'// 스프링 부트 타임리프 스타터 의존성
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0' // JUnit
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' // 스프링 부트 테스트 스타터 모듈
+
 }
 
 test {
