@@ -32,5 +32,5 @@ class MainControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk()) // 응답 상태가 200 OK 인지 확인
                 .andExpect(MockMvcResultMatchers.view().name("index")); // 뷰 이름이 "index"인지 확인
     }
-    
+
 }
