@@ -4,6 +4,7 @@ import lotson.timkim.dto.HomeDTO;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -26,7 +27,7 @@ public class EncryptionAspect {
     private void encryptFields(HomeDTO homeDTO) {
         String name = homeDTO.getName();
         String age = homeDTO.getAge();
-        log.info("ENCRYPTED FIELDS: NAME = {}, AGE = {}", name, age);
+        log.info("암호화 이전 :: NAME = {}, AGE = {}", name, age);
         homeDTO.setName("encrypted-" + name);
         homeDTO.setAge("encrypted-" + age);
     }

@@ -5,9 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/")
@@ -17,12 +15,8 @@ public class MainController {
     @GetMapping
     @Main.EncryptParams
     public String getHome(Model model, HomeDTO homeDTO) {
-        String name = homeDTO.getName();
-        String age = homeDTO.getAge();
-        model.addAttribute("name", name);
-        model.addAttribute("age", age);
-
-        log.info("NAME : {}, AGE ; {}", name, age);
+        model.addAttribute("name", homeDTO.getName());
+        model.addAttribute("age", homeDTO.getAge());
 
         return "index";
     }
@@ -30,13 +24,25 @@ public class MainController {
     @PostMapping
     @Main.EncryptParams
     public String postHome(Model model, HomeDTO homeDTO) {
-        String name = homeDTO.getName();
-        String age = homeDTO.getAge();
-        model.addAttribute("name", name);
-        model.addAttribute("age", age);
-
-        log.info("NAME : {}, AGE ; {}", name, age);
+        model.addAttribute("name", homeDTO.getName());
+        model.addAttribute("age", homeDTO.getAge());
 
         return "index";
     }
+
+    @GetMapping("/api")
+    @ResponseBody
+    @Main.EncryptParams
+    public HomeDTO ajaxGet(Model model, HomeDTO homeDTO) {
+        return homeDTO;
+    }
+
+
+    @PostMapping("/api")
+    @ResponseBody
+    @Main.EncryptParams
+    public HomeDTO ajaxPost(Model model, HomeDTO homeDTO) {
+        return homeDTO;
+    }
+
 }

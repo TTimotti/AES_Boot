@@ -9,6 +9,6 @@ public class Main {
 
     @Target(ElementType.METHOD)
     @Retention(RetentionPolicy.RUNTIME)
-    public @interface EncryptParams {
+    public @interface EncryptParams{
     }
 }
