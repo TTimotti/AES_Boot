@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="header">
+        <nav class="shortcut_div">
+            <ul class="shortcut_list">
+                <li class="shortcut_item">
+                    <a th:href="@{/api/encrypt}">Encrypt</a>
+                </li>
+                <li class="shortcut_item">
+                    <a th:href="@{/api/decrypt}">Decrypt</a>
+                </li>
+            </ul>
+        </nav>
+</header>
+</html>
