@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+<th:block layout:fragment="css"></th:block>
+<th:block layout:fragment="script">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const result_text = document.getElementById("result_text");
+            const FORM = document.getElementById("crypt_form");
+
+            function sendPostRequest() {
+                let formData = new FormData(FORM);
+                const URL = "/api/decrypt";
+
+                fetch(URL, {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(error => {
+                                throw new Error(error.message || 'Internal Server Error');
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        result_text.innerText = `복호화 된 값 : ${data.value}`;
+                    })
+                    .catch(error => {
+                        alert(error);
+                    });
+            }
+
+            document.getElementById("crypt_form_submit").addEventListener("click", () => {
+                sendPostRequest();
+            })
+        });
+    </script>
+</th:block>
+<main layout:fragment="content">
+    <form id="crypt_form">
+        <label class="crypt_form_input">
+            복호화 할 값 :
+            <input type="text" id="value" name="value"/>
+        </label>
+        <label class="crypt_form_input">
+            비밀 키 :
+            <input type="text" name="secretKey"/>
+        </label>
+        <label class="crypt_form_input">
+            암호화 알고리즘 :
+            <select name="algorithm">
+                <option value="AES">AES</option>
+            </select>
+        </label>
+        <label class="crypt_form_input">
+            암호화 모드 :
+            <select name="mode">
+                <option value="CBC">CBC</option>
+            </select>
+        </label>
+        <label class="crypt_form_input">
+            암호화 패딩 :
+            <select name="padding">
+                <option value="PKCS5Padding">PKCS5Padding</option>
+            </select>
+        </label>
+    </form>
+    <div class="flex_div">
+        <button id="crypt_form_submit" type="button" class="block-btn">SUBMIT</button>
+    </div>
+    <article class="flex-box">
+        <div>
+            <h3 id="result_text">복호화 된 값 : </h3>
+        </div>
+    </article>
+</main>
+</html>
